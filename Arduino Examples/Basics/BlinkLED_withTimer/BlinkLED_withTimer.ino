@@ -1,11 +1,11 @@
 /*
- * Creation & Computation Examples
- * Nick Puckett
+ * Creation & Computation - Digital Futures, OCAD University
+ * Kate Hartman / Nick Puckett
  * 
- * Class1  - blink the internal LED with a timer
- *  this example uses the internal LED , attached to pin 13
- * to use it with a differen LED, just change the pin number
- * v1 Extended code
+ * Blink the internal LED without using a simple timer instead of delay
+ *  
+ * 
+ * 
  */
 
 
@@ -18,8 +18,7 @@ long lastTimeYouBlinked;
 
 
 void setup() {
-  // put your setup code here, to run once:
-Serial.begin(9600); //turn on the Serial port so we can print values
+  pinMode(ledPin1, OUTPUT);                  //Set the pin to output mode
 }
 
 void loop() {
