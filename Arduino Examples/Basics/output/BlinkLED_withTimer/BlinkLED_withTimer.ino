@@ -9,12 +9,12 @@
  */
 
 
-int ledPin1 = 13;
-int blinkRate = 100;
+int ledPin1 = 13;           //the pin the LED is attached to pin 13 attaches to an internal LED  
+int blinkRate = 100;        //the time between blinks in milliseconds
 boolean ledState1 = false;
 
 
-long lastTimeYouBlinked;
+long lastTimeYouBlinked;  //this stores the time of the last change
 
 
 void setup() {
