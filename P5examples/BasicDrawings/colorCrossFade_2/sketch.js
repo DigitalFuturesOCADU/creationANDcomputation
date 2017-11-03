@@ -9,7 +9,7 @@
 
 
 var fadeRate = 10;        //the time between updates in milliseconds
-var fadeIncrement = 0.005;    // how much to change the brightness each cycle 
+var fadeIncrement = 0.05;    // how much to change the brightness each cycle 
 
 
 var color1;

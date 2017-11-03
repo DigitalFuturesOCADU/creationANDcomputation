@@ -13,7 +13,7 @@ var totalX = 25;
 var totalY = 40;
 var margin = 20;
 var circRad = 20;
-var waveFactor = 20;
+var waveFactor = 50;
 
 function setup()
 {

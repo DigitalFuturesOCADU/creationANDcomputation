@@ -35,6 +35,7 @@ background(255);
 fill(lerpColor(color1,color2,xFadeVal));
 noStroke();
 ellipse(width/2,height/2,height/3,height/3);
+console.log(xFadeVal);
 
 if(millis()-lastTimeYouChanged>=fadeRate) //this very simple statement is the timer,
 {                                          //it subtracts the value of the moment in time the last blink happened, and sees if that number is larger than your set blinking value

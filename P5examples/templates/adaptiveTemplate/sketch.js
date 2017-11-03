@@ -7,7 +7,7 @@ function setup()
 
 function draw() 
 {
-
+ellipse(width/2,height/2,100,100);
 }
 
 function windowResized() 

@@ -9,7 +9,7 @@
 
 
 
-var totalX = 30;
+var totalX = 50;
 var totalY = 20;
 var margin = 20;
 var circRad = 20;

@@ -30,7 +30,7 @@ function setup() {
 
 function draw() 
 {
-countVal+=countInc;
+countVal+=countInc;  //countVal = countVal + countInc
 xFadeVal = map(sin(countVal),-1,1,0.0,1.0);
 
 background(lerpColor(color2,color1,xFadeVal));
