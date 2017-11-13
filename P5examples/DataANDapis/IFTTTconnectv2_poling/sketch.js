@@ -8,9 +8,9 @@
 
 
 
-var aiokey = "";
-var userName = "";
-var channelName = "";
+var aiokey = "657dc16674f347e5ad2f4c805abb0f60";//get this from your account
+var userName = "npuckett"; //get this from your account
+var channelName = "stuffFromP5"; //choose a name
 
 var pollingRate = 2500;
 var lastCheck = 0;

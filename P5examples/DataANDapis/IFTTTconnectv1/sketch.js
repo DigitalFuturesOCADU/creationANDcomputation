@@ -7,9 +7,9 @@
  */
 
 
-var aiokey = "";//get this from your account
-var userName = ""; //get this from your account
-var channelName1 = ""; //choose a name
+var aiokey = "657dc16674f347e5ad2f4c805abb0f60";//get this from your account
+var userName = "npuckett"; //get this from your account
+var channelName1 = "stuffFromP5"; //choose a name
 var channelName2 = ""; //choose a name
 
 function setup()

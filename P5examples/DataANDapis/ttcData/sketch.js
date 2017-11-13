@@ -32,13 +32,16 @@ function draw()
 
 function mousePressed()
 {
-loadJSON(sendURL,ttcData);
+loadJSON(sendURL,somethingRandom);
 
 }
 
-function ttcData(ttcInfo)
+function somethingRandom(ttcInfo)
 {
+	//console.log(ttcInfo.predictions);
+
 	minutesTilNext = ttcInfo.predictions.direction.prediction[0].minutes;
+	var m2 = ttcInfo.predictions.direction.prediction[1].minutes;
 
 	background(255,0,0);
 	fill(255);
@@ -47,4 +50,5 @@ function ttcData(ttcInfo)
 	textSize(tSize);
 
 	text(minutesTilNext,width/2,(height/2)+(tSize/4));
+	text(m2,width/2,(height/2)+(tSize/6));
 }
