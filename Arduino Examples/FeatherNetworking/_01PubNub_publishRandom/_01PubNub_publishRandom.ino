@@ -18,14 +18,14 @@ static char ssid[] = "ocadu-embedded";      //SSID of the wireless network
 static char pass[] = "internetofthings";    //password of that network
 int status = WL_IDLE_STATUS;                // the Wifi radio's status
 
-const static char pubkey[] = "pub-c-bb1c713d-dc79-438c-9013-d51df38097c2";  //get this from your PUbNub account
-const static char subkey[] = "sub-c-b8b4a804-c406-11e7-adbc-0adecfecf8a2";  //get this from your PubNub account
+const static char pubkey[] = "";  //get this from your PUbNub account
+const static char subkey[] = "";  //get this from your PubNub account
 
 const static char pubChannel[] = "channel1"; //choose a name for the channel to publish messages to
 
 
-unsigned long lastRefresh = 0;
-int publishRate = 2000;
+unsigned long lastRefresh = 0;    //used to make the timer work
+int publishRate = 2000;           //how often to update the value on pubnub in milliseconds
 
 
 
@@ -40,15 +40,15 @@ int myVal2;
 
 void setup() 
 {
-  Serial.begin(9600);
-  connectToServer();
+  Serial.begin(9600);             //turn on the serial port
+  connectToServer();              //execute the connection funtion.  //connect to wifi and PubNub
 
 
 }
 
 void loop() 
 {
-  myVal1 = random(0,10);
+  myVal1 = random(0,10);          //this example just sends random numbers.  pick the two numbers
   myVal2 = random(100,200);
  
 
@@ -58,8 +58,8 @@ void loop()
 
   if(millis()-lastRefresh>=publishRate)   //timer used to publish the values at a given rate
   {
-  publishToPubNub();
-  lastRefresh=millis();   
+  publishToPubNub();                      //execute the function that sends the values to pubnub
+  lastRefresh=millis();                   //save the value so that the timer works
   }
 
 
@@ -93,7 +93,7 @@ void connectToServer()
 
     }
 
-    if(trys==10)
+    if(trys==10)                                              //what to print if it doesn't work after 10 tries
     {
       Serial.println("I don't this this is going to work");
     }
@@ -139,11 +139,11 @@ void publishToPubNub()
     Serial.print(PubNub.get_last_http_status_code_class(), DEC);
   }
   
-  while (client->available()) 
+  while (client->available())                                 //get feedback from PubNub
   {
     Serial.write(client->read());
   }
-  client->stop();
+  client->stop();                                             //stop the connection
   Serial.println("Successful Publish");
 
 

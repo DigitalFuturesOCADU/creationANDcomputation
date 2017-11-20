@@ -18,38 +18,38 @@ static char ssid[] = "ocadu-embedded";      //SSID of the wireless network
 static char pass[] = "internetofthings";    //password of that network
 int status = WL_IDLE_STATUS;                // the Wifi radio's status
 
-const static char pubkey[] = "pub-c-bb1c713d-dc79-438c-9013-d51df38097c2";  //get this from your PUbNub account
-const static char subkey[] = "sub-c-b8b4a804-c406-11e7-adbc-0adecfecf8a2";  //get this from your PubNub account
+const static char pubkey[] = "";  //get this from your PUbNub account
+const static char subkey[] = "";  //get this from your PubNub account
 
 const static char pubChannel[] = "channel2"; //choose a name for the channel to publish messages to
 const static char subChannel[] = "channel1"; //choose a name for the channel to publish messages to
 
 
-int ledPin = 10;
+int ledPin = 10;                  //the pin the LED is connected to
 
 
 
-int buttonPin = 11;
-int buttonPrev = 1;
-int buttonVal;
+int buttonPin = 11;               //the pin the button is connected to
+int buttonPrev = 1;               //previous value of the button
+int buttonVal;                     //current value of the button
 
 
 unsigned long lastRefresh = 0;
-int publishRate = 2000;
+int publishRate = 2000;              //refresh rate for reading values
 
-int sensorPin1 = A0; 
+int sensorPin1 = A0;                //the pin the potentiometer is attached  to
 
 
-int yourVal1;
+int yourVal1;                       //variables holding the values coming from the server
 int yourVal2;
 
-int myVal1;
+int myVal1;                         //variable holding the vaues going to the server
 int myVal2;
 
 
 void setup() 
 {
-  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(buttonPin, INPUT_PULLUP);  //set the pinmode for the button
   pinMode(ledPin, OUTPUT);  
   Serial.begin(9600);
   connectToServer();
@@ -60,41 +60,30 @@ void setup()
 void loop() 
 {
   
-analogWrite(ledPin,yourVal2);
+analogWrite(ledPin,yourVal2);                   //adjust the value of the led using the value from the server
 
-buttonVal = digitalRead(buttonPin);
+buttonVal = digitalRead(buttonPin);             //read the button  
 
 
-myVal1 = analogRead(sensorPin1);
-myVal2 = random(100,200);
+myVal1 = analogRead(sensorPin1);                //read the potentiometer
+myVal2 = random(100,200);                       //store a random value
 
 
 
    
 if((buttonVal==1)&&(buttonPrev==0))  //trigger the feed update with a button, uses both current and prev value to only change on the switch
 {  
-publishToPubNub();
+publishToPubNub();                    //send your values to PubNub
 }
 
 
 
   if(millis()-lastRefresh>=publishRate)     //theTimer to trigger the reads 
   {
-  readFromPubNub();
-   
-  Serial.print("randoVal1 ");
-  Serial.println(yourVal1);
-   
-  Serial.print("randoVal2 ");
-   Serial.println(yourVal2);
+  readFromPubNub();                   //read values from PubNub
  
   lastRefresh=millis();   
   }
-
-
-
-
-
 
 
 buttonPrev = buttonVal; //store the value of this cycle to compare next loop
@@ -189,7 +178,7 @@ void publishToPubNub()
 void readFromPubNub()
 {
   StaticJsonBuffer<1200> inBuffer;                    //create a memory buffer to hold a JSON Object
-  WiFiClient *sClient =PubNub.history(subChannel,1);
+  PubSubClient *sClient = PubNub.subscribe(subChannel);
 
   if (!sClient) {
     Serial.println("message read error");
@@ -206,10 +195,10 @@ void readFromPubNub()
     if(sMessage.success())
     {
       //sMessage.prettyPrintTo(Serial); //uncomment to see the JSON message in the serial monitor
-      yourVal1 = sMessage["randoVal1"];  //
-      Serial.print("randoVal1 ");
+      yourVal1 = sMessage["randoVal1"];  //store the value from the JSON into the variable
+      Serial.print("randoVal1 ");        //you need to know the name of the parameter in the message for this to work
       Serial.println(yourVal1);
-      yourVal2 = sMessage["randoVal2"];
+      yourVal2 = sMessage["randoVal2"];  //this is the one that connects to the LED
       Serial.print("randoVal2 ");
       Serial.println(yourVal2);
       

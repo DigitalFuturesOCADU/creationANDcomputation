@@ -18,20 +18,16 @@ static char ssid[] = "ocadu-embedded";      //SSID of the wireless network
 static char pass[] = "internetofthings";    //password of that network
 int status = WL_IDLE_STATUS;                // the Wifi radio's status
 
-const static char pubkey[] = "pub-c-bb1c713d-dc79-438c-9013-d51df38097c2";  //get this from your PUbNub account
-const static char subkey[] = "sub-c-b8b4a804-c406-11e7-adbc-0adecfecf8a2";  //get this from your PubNub account
+const static char pubkey[] = "";  //get this from your PUbNub account
+const static char subkey[] = "";  //get this from your PubNub account
 
 const static char pubChannel[] = "channel1"; //choose a name for the channel to publish messages to
 
+int sensorPin1 = A0;              //the pin the potentiometer is connected to                
 
-unsigned long lastRefresh = 0;
-int publishRate = 2000;
-
-int sensorPin1 = A0;                  
-
-int buttonPin = 11;
-int buttonPrev;
-int buttonVal;
+int buttonPin = 11;               //the pin the button is attached to
+int buttonPrev;                   //holds the previous value of the button , used to trigger only once
+int buttonVal;                    //holds the current state of the button
 
 
 int myVal1;                       //variables to hold values to send
@@ -43,22 +39,22 @@ int myVal2;
 void setup() 
 {
 
-  pinMode(buttonPin, INPUT_PULLUP);
+  pinMode(buttonPin, INPUT_PULLUP);             //set the pin mode for the button
   Serial.begin(9600);
-  connectToServer();
+  connectToServer();                            //execute the connection funtion.  //connect to wifi and pubnub
 
 
 }
 
 void loop() 
 {
-  buttonVal = digitalRead(buttonPin);
+  buttonVal = digitalRead(buttonPin);             //read the button value and save it
 
 
 
   
-  myVal1 = analogRead(sensorPin1);
-  myVal2 = random(100,200);
+  myVal1 = analogRead(sensorPin1);                //read the value from the potentiometer
+  myVal2 = random(100,200);                       //save a random value to send as well
 
 
 
@@ -66,7 +62,7 @@ void loop()
 if((buttonVal==1)&&(buttonPrev==0))  //trigger the feed update with a button, uses both current and prev value to only change on the switch
 {  
   Serial.println(myVal1);
-publishToPubNub();
+publishToPubNub();                   //trigger the publish function to send the values to pubnub
 }
 
 
