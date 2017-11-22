@@ -18,8 +18,8 @@ static char ssid[] = "ocadu-embedded";      //SSID of the wireless network
 static char pass[] = "internetofthings";    //password of that network
 int status = WL_IDLE_STATUS;                // the Wifi radio's status
 
-const static char pubkey[] = "";  //get this from your PUbNub account
-const static char subkey[] = "";  //get this from your PubNub account
+const static char pubkey[] = "pub-c-bb1c713d-dc79-438c-9013-d51df38097c2";  //get this from your PUbNub account
+const static char subkey[] = "sub-c-b8b4a804-c406-11e7-adbc-0adecfecf8a2";  //get this from your PubNub account
 
 const static char pubChannel[] = "channel1"; //choose a name for the channel to publish messages to
 

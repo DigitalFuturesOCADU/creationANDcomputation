@@ -41,8 +41,8 @@ function setup() {
    // initialize pubnub
   dataServer = PUBNUB.init(
   {
-    publish_key   : 'pub-c-bb1c713d-dc79-438c-9013-d51df38097c2',  //get these from the pubnub account online
-    subscribe_key : 'sub-c-b8b4a804-c406-11e7-adbc-0adecfecf8a2',  
+    publish_key   : '',  //get these from the pubnub account online
+    subscribe_key : '',  
     uuid: myUserID,
     ssl: true  //enables a secure connection. This option has to be used if using the OCAD webspace
   });
