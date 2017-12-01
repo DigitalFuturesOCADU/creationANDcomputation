@@ -3,8 +3,8 @@
 
 
 //get this data from your adafruit.io account
-#define IO_USERNAME "npuckett"
-#define  IO_KEY "657dc16674f347e5ad2f4c805abb0f60"
+#define IO_USERNAME ""
+#define  IO_KEY ""
 
 
 //for ocad wifi make sure you have registered the MAC address of your board
